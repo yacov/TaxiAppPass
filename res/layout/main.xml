@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MyActivity" >
+    tools:context="MyActivity">
 
     <ImageView
         android:id="@+id/BackGroundView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center" 
+        android:layout_gravity="center"
         android:scaleType="centerCrop"
         android:src="@drawable/background_black" />
 
@@ -30,9 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/round_but" 
-        android:background="@android:color/transparent"
-        />
+        android:src="@drawable/round_but"
+        android:background="@android:color/transparent" />
 
     <Button
         android:id="@+id/btn_mshare"

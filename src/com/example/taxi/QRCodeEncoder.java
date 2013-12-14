@@ -26,7 +26,7 @@ public final class QRCodeEncoder {
         encoded = encodeContents(data, bundle, format);
     }
 
-    private boolean encodeContents(String data, Bundle bundle,  String formatString) {
+    private boolean encodeContents(String data, Bundle bundle, String formatString) {
         // Default to QR_CODE if no format given.
         format = null;
         if (formatString != null) {
@@ -44,43 +44,43 @@ public final class QRCodeEncoder {
     }
 
     public Bitmap encodeAsBitmap() throws WriterException {
-    	if (!encoded) return null;
+        if (!encoded) return null;
 
-    	Hashtable<EncodeHintType, String> hints = null;
-    	String encoding = guessAppropriateEncoding(contents);
-    	if (encoding != null) {
-	    	hints = new Hashtable<EncodeHintType, String>();
-	    	hints.put(EncodeHintType.CHARACTER_SET, encoding);
-    	}
-    	MultiFormatWriter writer = new MultiFormatWriter();
-    	BitMatrix result = writer.encode(contents, format, dimension, dimension, hints);
-    	int width = result.getWidth();
-    	int height =result.getHeight();
-    	int[] pixels = new int[width * height];
-    	// All are 0, or black, by default
-    	for (int y = 0; y < height; y++) {
-	    	int offset = y * width;
-	    	for (int x = 0; x < width; x++) {
-	
-		    	if(!result.get(x, y))
-		    	{
-		    	pixels[offset + x] = WHITE ;
-		    	}
-		    	else
-		    	pixels[offset + x] = BLACK ;
-	
-	    	}
-    	}
+        Hashtable<EncodeHintType, String> hints = null;
+        String encoding = guessAppropriateEncoding(contents);
+        if (encoding != null) {
+            hints = new Hashtable<EncodeHintType, String>();
+            hints.put(EncodeHintType.CHARACTER_SET, encoding);
+        }
+        MultiFormatWriter writer = new MultiFormatWriter();
+        BitMatrix result = writer.encode(contents, format, dimension, dimension, hints);
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        // All are 0, or black, by default
+        for (int y = 0; y < height; y++) {
+            int offset = y * width;
+            for (int x = 0; x < width; x++) {
 
-    	Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-    	bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
-    	return bitmap;
-   }
+                if (!result.get(x, y)) {
+                    pixels[offset + x] = WHITE;
+                } else
+                    pixels[offset + x] = BLACK;
+
+            }
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        return bitmap;
+    }
 
     private static String guessAppropriateEncoding(CharSequence contents) {
         // Very crude at the moment
         for (int i = 0; i < contents.length(); i++) {
-            if (contents.charAt(i) > 0xFF) { return "UTF-8"; }
+            if (contents.charAt(i) > 0xFF) {
+                return "UTF-8";
+            }
         }
         return null;
     }

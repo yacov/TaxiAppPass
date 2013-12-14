@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapActivity" >
-
+    tools:context=".MapActivity">
 
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_can" >
+        android:layout_above="@+id/btn_can">
 
         <fragment
             android:id="@+id/map"
@@ -42,13 +41,13 @@
         android:textColor="@color/Black"
         android:textSize="24sp"
         android:textStyle="bold" />
-    
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@color/Black"
-            android:gravity="left|center" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@color/Black"
+        android:gravity="left|center" />
 
 </RelativeLayout>
